@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-// import styled from 'styled-components';
+
 import Button from '../../UI/Button/Button';
 import styles from './CourseInput.module.css';
 
-// Adding an additional componenet to this one JS file.
 // const FormControl = styled.div`
 //   margin: 0.5rem 0;
 
@@ -18,7 +17,7 @@ import styles from './CourseInput.module.css';
 //     display: block;
 //     width: 100%;
 //     border: 1px solid ${props => (props.invalid ? 'red' : '#ccc')};
-//     background-color: ${props => (props.invalid ? 'lightpink' : 'transparent')};
+//     background: ${props => (props.invalid ? '#ffd7d7' : 'transparent')};
 //     font: inherit;
 //     line-height: 1.5rem;
 //     padding: 0 0.25rem;
@@ -36,7 +35,7 @@ const CourseInput = props => {
   const [isValid, setIsValid] = useState(true);
 
   const goalInputChangeHandler = event => {
-    if (event.target.value.length > 0) {
+    if (event.target.value.trim().length > 0) {
       setIsValid(true);
     }
     setEnteredValue(event.target.value);
@@ -44,12 +43,10 @@ const CourseInput = props => {
 
   const formSubmitHandler = event => {
     event.preventDefault();
-
     if (enteredValue.trim().length === 0) {
       setIsValid(false);
       return;
     }
-
     props.onAddGoal(enteredValue);
   };
 
